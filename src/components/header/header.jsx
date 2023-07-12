@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import styles from "./header.module.css";
 import MenuIcon from "@mui/icons-material/Menu";
 import Menu from "@mui/material/Menu";
@@ -8,25 +8,12 @@ import { Link } from "react-router-dom";
 import CartContext from "../../context/cartContext";
 import { useContext } from "react";
 import AuthContext from "../../context/authContext";
-import Cookies from "js-cookie";
+
 const Header = () => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const { cart } = useContext(CartContext);
-  const { user, setUser, logout } = useContext(AuthContext);
-
-  useEffect(() => {
-    const user = Cookies.get("user");
-    if (user) {
-      try {
-        setUser(JSON.parse(user));
-      } catch (error) {
-        console.error("Invalid JSON string in user cookie:", user);
-        setUser(null);
-      }
-    }
-  }, []);
-  
+  const { user, logout } = useContext(AuthContext);
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);

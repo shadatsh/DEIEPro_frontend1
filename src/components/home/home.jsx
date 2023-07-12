@@ -1,15 +1,16 @@
-import React from 'react';
-import Slider from 'react-slick';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
-import pic1 from '../../assets/images/picture1.jpg';
-import pic2 from '../../assets/images/picture2.jpg';
-import pic3 from '../../assets/images/picture3.jpeg';
-import styles from './home.module.css';
-import labs from '../dummy/labs.js';
-import { Link } from 'react-router-dom';
-import MetaData from '../layouts/MetaData.js'
-
+import React from "react";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import pic1 from "../../assets/images/picture1.jpg";
+import pic2 from "../../assets/images/picture2.jpg";
+import pic3 from "../../assets/images/picture3.jpeg";
+import styles from "./home.module.css";
+import labs from "../dummy/labs.js";
+import { Link } from "react-router-dom";
+import MetaData from "../layouts/MetaData.js";
+import Footer from "../footer/footer";
+import Header from "../header/header";
 
 const Home = () => {
   const settings = {
@@ -23,44 +24,54 @@ const Home = () => {
   };
 
   return (
-    <div className={styles.homeContainer}>
-      <MetaData title="Home" />
-      <Slider {...settings}>
-        <div className={styles.imageContainer}>
-        <img src={pic1} alt="" style={{ width: '1500px', height: '400px' }} /> 
-        </div>
-        <div className={styles.imageContainer}>
-        <img src={pic2} alt="" style={{ width: '1500px', height: '400px' }} /> 
-        </div>
-        <div className={styles.imageContainer}>
-        <img src={pic3} alt="" style={{ width: '1500px', height: '400px' }} /> 
-        </div>
-      </Slider>
+    <div>
+      <Header />
+      <div className={styles.homeContainer}>
+        <MetaData title="Home" />
+        <Slider {...settings}>
+          <div className={styles.imageContainer}>
+            <img
+              src={pic1}
+              alt=""
+              style={{ width: "1500px", height: "400px" }}
+            />
+          </div>
+          <div className={styles.imageContainer}>
+            <img
+              src={pic2}
+              alt=""
+              style={{ width: "1500px", height: "400px" }}
+            />
+          </div>
+          <div className={styles.imageContainer}>
+            <img
+              src={pic3}
+              alt=""
+              style={{ width: "1500px", height: "400px" }}
+            />
+          </div>
+        </Slider>
 
-      <br/>
+        <br />
 
-      
-      <div className={styles.labsContainer}>
-        {labs &&
-          labs.map((lab) => {
-            return (
-              <div key={lab.id} className={styles.labContainer}>
-                <Link to={`/laboratory/${lab.id}`}>
-                  <div className={styles.lab}>
-                    {lab.name}
-                  </div>
-                </Link>
-              </div>
-            );
-          })}
-           
+        <div className={styles.labsContainer}>
+          {labs &&
+            labs.map((lab) => {
+              return (
+                <div key={lab.id} className={styles.labContainer}>
+                  <Link to={`/laboratory/${lab.id}`}>
+                    <div className={styles.lab}>{lab.name}</div>
+                  </Link>
+                </div>
+              );
+            })}
+        </div>
+        <br />
+        <br />
       </div>
-      <br/>
-      <br/>
+      <Footer />
     </div>
-    
   );
-  
 };
 
 export default Home;

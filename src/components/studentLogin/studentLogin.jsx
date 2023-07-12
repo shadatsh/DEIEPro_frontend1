@@ -6,6 +6,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Cookies from "js-cookie";
 import MetaData from "../layouts/MetaData";
+import Footer from "../footer/footer";
 
 const StudentLogin = () => {
   const navigate = useNavigate();
@@ -30,15 +31,22 @@ const StudentLogin = () => {
         values
       );
       const { success, token, user } = response.data;
-      const { error } = response;
+
       if (success) {
-        Cookies.set("token", token);
-        Cookies.set("user", user);
-        const redirect = location.search
-          ? "/" + location.search.split("=")[1]
-          : "/";
-        navigate(redirect);
-        setStatus({ success: true, user });
+        const { role } = user;
+
+        if (role === "student") {
+          Cookies.set("token", token);
+          Cookies.set("user", JSON.stringify(user));
+          const redirect = location.search
+            ? "/" + location.search.split("=")[1]
+            : "/";
+          navigate(redirect);
+          setStatus({ success: true, user });
+        } else {
+          alert("Role is not specified. Only students can login.");
+          setStatus({ success: false, message: "Only students can login" });
+        }
       } else {
         setStatus({ success: false });
       }
@@ -61,42 +69,45 @@ const StudentLogin = () => {
   }, [navigate, location.search]);
 
   return (
-    <div className={styles.container}>
-      <div className={styles.formContainer}>
-        <MetaData title={`Login`} />
-        <h1>Login</h1>
-        <Formik
-          initialValues={initialValues}
-          validationSchema={validationSchema}
-          onSubmit={onSubmit}
-        >
-          {({ isSubmitting }) => (
-            <Form>
-              <div>
-                <label htmlFor="email">Email</label>
-                <Field type="email" name="email" />
-                <ErrorMessage name="email" component="div" />
-              </div>
-              <br />
+    <div>
+      <div className={styles.container}>
+        <div className={styles.formContainer}>
+          <MetaData title={`Login`} />
+          <h1>Login</h1>
+          <Formik
+            initialValues={initialValues}
+            validationSchema={validationSchema}
+            onSubmit={onSubmit}
+          >
+            {({ isSubmitting }) => (
+              <Form>
+                <div>
+                  <label htmlFor="email">Email</label>
+                  <Field type="email" name="email" />
+                  <ErrorMessage name="email" component="div" />
+                </div>
+                <br />
 
-              <div>
-                <label htmlFor="password">Password</label>
-                <Field type="password" name="password" />
-                <ErrorMessage name="password" component="div" />
-              </div>
-              <br />
-              <br />
-              <button type="submit" disabled={isSubmitting}>
-                Submit
-              </button>
-            </Form>
-          )}
-        </Formik>
-        <Link to="/forgot-password">Forgot username or Password?</Link>
-        <div>
-          <Link to="/student-register">Register</Link>
+                <div>
+                  <label htmlFor="password">Password</label>
+                  <Field type="password" name="password" />
+                  <ErrorMessage name="password" component="div" />
+                </div>
+                <br />
+                <br />
+                <button type="submit" disabled={isSubmitting}>
+                  Submit
+                </button>
+              </Form>
+            )}
+          </Formik>
+          <Link to="/forgot-password">Forgot username or Password?</Link>
+          <div>
+            <Link to="/student-register">Register</Link>
+          </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

@@ -4,7 +4,6 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import MetaData from "../layouts/MetaData";
 
 const ResetPassword = () => {
   const initialValues = {
@@ -40,7 +39,7 @@ const ResetPassword = () => {
         "http://localhost:8000/api/v1/password/reset",
         { ...values, resetToken }
       );
-  
+
       if (response.data.success) {
         setIsResetSuccessful(true);
       } else {
@@ -49,20 +48,17 @@ const ResetPassword = () => {
       }
     } catch (error) {
       console.error(error);
-      setFieldError(
-        "password",
-        "An error occurred. Please try again later."
-      );
+      setFieldError("password", "An error occurred. Please try again later.");
       setSubmitting(false);
     }
   };
-  
 
   if (isResetSuccessful) {
     return (
       <div className={styles.container}>
         <div>
-          Your password has been reset successfully. Please go back to the login page to login with your new password.
+          Your password has been reset successfully. Please go back to the login
+          page to login with your new password.
         </div>
       </div>
     );
@@ -70,9 +66,7 @@ const ResetPassword = () => {
 
   return (
     <div className={styles.container}>
-      <div>
-        Enter your new password below.
-      </div>
+      <div>Enter your new password below.</div>
       <div className={styles.formContainer}>
         <Formik
           initialValues={initialValues}

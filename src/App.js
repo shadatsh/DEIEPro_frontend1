@@ -1,10 +1,8 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./App.css";
-import { HelmetProvider } from 'react-helmet-async'
+import { HelmetProvider } from "react-helmet-async";
 import Equipments from "./components/equipments/equipments";
-import Footer from "./components/footer/footer";
-import Header from "./components/header/header";
 import Home from "./components/home/home";
 import Laboratory from "./components/laboratory/laboratory";
 import ForgotPassword from "./components/forgotPassword/forgotPassword";
@@ -16,6 +14,7 @@ import StudentRegister from "./components/studentRegister/studentRegister";
 import AuthContextProvider from "./context/authContextProvider";
 import ProtectedRoute from "./route/protectedRoute";
 
+
 // This is the main App file 
 
 function App() {
@@ -25,7 +24,6 @@ function App() {
         <Router>
           <div className="App">
             <HelmetProvider>
-              <Header />
               <Routes>
                 <Route
                   path="/"
@@ -35,10 +33,43 @@ function App() {
                     </ProtectedRoute>
                   }
                 />
+                <Route
+                  path="/Home"
+                  element={
+                    <ProtectedRoute>
+                      <Home2 />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/Officer"
+                  element={
+                    <ProtectedRoute>
+                      <Home3 />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route path="/requests" element={<Requests />} />
+                <Route path="/next/:id" element={<NextRequest />} />
+                <Route path="/login" element={<MainBox />} />
                 <Route path="/student-login" element={<StudentLogin />} />
                 <Route path="/student-register" element={<StudentRegister />} />
+
+                <Route path="/lecturer-login" element={<LecturerLogin />} />
+                <Route
+                  path="/lecturer-register"
+                  element={<LecturerRegister />}
+                />
+
+                <Route path="/officer-login" element={<OfficerLogin />} />
+                <Route path="/officer-register" element={<OfficerRegister />} />
+
                 <Route path="/forgot-password" element={<ForgotPassword />} />
-                <Route path='/password/reset/:token' element={<ResetPassword/> } />
+                <Route
+                  path="/password/reset/:token"
+                  element={<ResetPassword />}
+                />
+
                 <Route
                   path="/laboratory"
                   element={
@@ -64,7 +95,6 @@ function App() {
                   }
                 />
               </Routes>
-              <Footer />
             </HelmetProvider>
           </div>
         </Router>
