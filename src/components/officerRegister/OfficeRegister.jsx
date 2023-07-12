@@ -1,13 +1,13 @@
 import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import styles from "./studentRegister.module.css";
+import styles from "./officerRegister.module.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import MetaData from "../layouts/MetaData";
 import Footer from "../footer/footer";
 
-const StudentRegister = () => {
+const OfficerRegister = () => {
   const navigate = useNavigate();
 
   const initialValues = {
@@ -34,7 +34,7 @@ const StudentRegister = () => {
     try {
       const formData = {
         ...values,
-        role: "student", // Set the role as "lecturer"
+        role: "officer", // Set the role as "lecturer"
       };
       const response = await axios.post(
         "http://localhost:8000/api/v1/register",
@@ -42,7 +42,7 @@ const StudentRegister = () => {
       );
       const { success, user } = response.data;
       if (success) {
-        navigate("/student-login");
+        navigate("/officer-login");
         // You can also store user data in your state if needed
         setStatus({ success: true, user });
       } else {
@@ -118,4 +118,4 @@ const StudentRegister = () => {
   );
 };
 
-export default StudentRegister;
+export default OfficerRegister;

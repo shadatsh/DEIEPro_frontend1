@@ -1,14 +1,14 @@
 import React, { useEffect } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import styles from "./studentLogin.module.css";
+import styles from "./officerlogin.module.css";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Cookies from "js-cookie";
 import MetaData from "../layouts/MetaData";
 import Footer from "../footer/footer";
 
-const StudentLogin = () => {
+const OfficerLogin = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -35,16 +35,16 @@ const StudentLogin = () => {
       if (success) {
         const { role } = user;
 
-        if (role === "student") {
+        if (role === "officer") {
           Cookies.set("token", token);
           Cookies.set("user", JSON.stringify(user));
           const redirect = location.search
-            ? "/" + location.search.split("=")[1]
-            : "/";
+            ? "/Officer" + location.search.split("=")[1]
+            : "/Officer";
           navigate(redirect);
           setStatus({ success: true, user });
         } else {
-          alert("Role is not specified. Only students can login.");
+          alert("Role is not specified. Only Technical Officer can login.");
           setStatus({ success: false, message: "Only students can login" });
         }
       } else {
@@ -62,8 +62,8 @@ const StudentLogin = () => {
     const token = Cookies.get("token");
     if (token) {
       const redirect = location.search
-        ? "/" + location.search.split("=")[1]
-        : "/";
+        ? "/Officer" + location.search.split("=")[1]
+        : "/Officer";
       navigate(redirect);
     }
   }, [navigate, location.search]);
@@ -103,7 +103,7 @@ const StudentLogin = () => {
           </Formik>
           <Link to="/forgot-password">Forgot username or Password?</Link>
           <div>
-            <Link to="/student-register">Register</Link>
+            <Link to="/officer-register">Register</Link>
           </div>
         </div>
       </div>
@@ -112,4 +112,4 @@ const StudentLogin = () => {
   );
 };
 
-export default StudentLogin;
+export default OfficerLogin;

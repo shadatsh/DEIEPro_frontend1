@@ -2,17 +2,14 @@ import React from "react";
 import styles from "./header.module.css";
 import MenuIcon from "@mui/icons-material/Menu";
 import Menu from "@mui/material/Menu";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import MenuItem from "@mui/material/MenuItem";
 import { Link } from "react-router-dom";
-import CartContext from "../../context/cartContext";
 import { useContext } from "react";
 import AuthContext from "../../context/authContext";
 
-const Header = () => {
+const Header1 = () => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
-  const { cart } = useContext(CartContext);
   const { user, logout } = useContext(AuthContext);
 
   const handleClick = (event) => {
@@ -25,22 +22,10 @@ const Header = () => {
     <div className={styles.headerContainer}>
       <div className={styles.titleContainer}>DEIEprolab</div>
       <div className={styles.navContainer}>
-        <Link to="/">Home</Link>
-        <Link to="/cart" className={styles.parent}>
-          <ShoppingCartIcon />
-          <div className={`cartCount ${styles.cartCount}`}>{cart.length}</div>
-        </Link>
+        <Link to="/Home">Home</Link>
 
-        {user == null ? (
-          <div>
-            You are not logged in :{" "}
-            <b>
-              <Link to="/student-login">Login</Link>
-            </b>
-          </div>
-        ) : (
-          <div>Hi! {user && user.name} </div>
-        )}
+        <div>Lecturer {user && user.name} </div>
+
         <div>
           <div>
             <MenuIcon
@@ -61,11 +46,11 @@ const Header = () => {
           >
             <MenuItem onClick={handleClose}>Home Page</MenuItem>
 
-            {user && <MenuItem onClick={logout}>Logout</MenuItem>}
+            <MenuItem onClick={logout}>Logout</MenuItem>
           </Menu>
         </div>
       </div>
     </div>
   );
 };
-export default Header;
+export default Header1;

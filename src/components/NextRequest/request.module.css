@@ -1,0 +1,76 @@
+.button {
+    padding: 10px 10px;
+    margin-bottom: 600px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    color: #ddd;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    background-color: RGB(15, 23, 47, 0.8);
+  }
+  
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 700px;
+    width: 100%;
+    min-height: 70vh;
+    background: url("../../assets/images/back.jpeg");
+    background-size: cover;
+    background-position: center;
+  }
+  
+  .formContainer {
+    width: 750px;
+    height: 500px;
+    background-color: RGB(15, 28, 47, 0.8);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .formContainer h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .formContainer label {
+    display: inline-block;
+    width: 120px;
+    font-size: 20px;
+    margin-bottom: 5px;
+  }
+  
+  .formContainer input {
+    display: inline-block;
+    vertical-align: middle;
+    width: 250px;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #bca578;
+    background-color: #0f1c2f;
+    color: white;
+    font-size: 20px;
+  }
+  
+  .formContainer button {
+    width: 20%;
+    background-color: #bca578;
+    color: #0f1c2f;
+    font-size: 15px;
+    align-self: flex-start;
+    padding: 10px;
+    border-color: #0f1c2f;
+    border-radius: 5px;
+    margin-top: 60%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  

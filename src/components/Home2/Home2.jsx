@@ -6,13 +6,13 @@ import pic1 from "../../assets/images/picture1.jpg";
 import pic2 from "../../assets/images/picture2.jpg";
 import pic3 from "../../assets/images/picture3.jpeg";
 import styles from "./home.module.css";
-import labs from "../dummy/labs.js";
-import { Link } from "react-router-dom";
 import MetaData from "../layouts/MetaData.js";
+import { Link } from "react-router-dom";
+import StarIcon from "@mui/icons-material/Star";
 import Footer from "../footer/footer";
-import Header from "../header/header";
+import Header1 from "../header/Header1";
 
-const Home = () => {
+const Home2 = () => {
   const settings = {
     dots: true,
     infinite: true,
@@ -25,9 +25,10 @@ const Home = () => {
 
   return (
     <div>
-      <Header />
+      <Header1 />
+
       <div className={styles.homeContainer}>
-        <MetaData title="Home" />
+        <MetaData title="Home2" />
         <Slider {...settings}>
           <div className={styles.imageContainer}>
             <img
@@ -51,27 +52,24 @@ const Home = () => {
             />
           </div>
         </Slider>
-
-        <br />
-
-        <div className={styles.labsContainer}>
-          {labs &&
-            labs.map((lab) => {
-              return (
-                <div key={lab.id} className={styles.labContainer}>
-                  <Link to={`/laboratory/${lab.id}`}>
-                    <div className={styles.lab}>{lab.name}</div>
-                  </Link>
-                </div>
-              );
-            })}
+        <div className={styles.buttonContainer}>
+          <Link to="/requests" className={styles.button}>
+            <StarIcon className={styles.icon} />
+            New Requests
+          </Link>
+          <Link to="/requests" className={styles.button}>
+            <StarIcon className={styles.icon} />
+            New Requests
+          </Link>
+          <Link to="/requests" className={styles.button}>
+            <StarIcon className={styles.icon} />
+            New Requests
+          </Link>
         </div>
-        <br />
-        <br />
       </div>
       <Footer />
     </div>
   );
 };
 
-export default Home;
+export default Home2;
