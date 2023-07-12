@@ -13,10 +13,15 @@ import Cart from "./components/cart/cart";
 import StudentRegister from "./components/studentRegister/studentRegister";
 import AuthContextProvider from "./context/authContextProvider";
 import ProtectedRoute from "./route/protectedRoute";
-
-
-// This is the main App file 
-
+import MainBox from "./components/MainLogin/MainBox";
+import LecturerLogin from "./components/lecturerLogin/LecturerLogin";
+import OfficerLogin from "./components/technicalofficer/OfficerLogin";
+import OfficerRegister from "./components/officerRegister/OfficerRegister";
+import LecturerRegister from "./components/lecturerRegister/lecturerRegister";
+import Home2 from "./components/Home2/Home2";
+import Home3 from "./components/Home3/Home3";
+import Requests from "./components/Requests/Requests";
+import NextRequest from "./components/NextRequest/NextRequest";
 function App() {
   return (
     <AuthContextProvider>

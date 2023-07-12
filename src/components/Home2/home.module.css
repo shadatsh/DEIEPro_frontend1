@@ -1,0 +1,44 @@
+.homeContainer {
+    height: 80vh;
+    width: 100%;
+    background: url("../../assets/images/back.jpeg");
+    background-size: cover;
+    background-position: center;
+  }
+  .slick-slide img {
+    width: 50%;
+    height: 30px;
+  }
+  
+  .slick-dots {
+    bottom: 20px;
+  }
+  
+  .slick-prev:before,
+  .slick-next:before {
+    color: black;
+  }
+  
+  .buttonContainer {
+    margin: 10px 100px;
+    border-radius: 4px;
+    width: 25%;
+    height: 80px;
+    padding-left: 10%;
+  }
+  
+  .button {
+    padding: 10px 20px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    color: #ddd;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    background-color: RGB(15, 28, 47, 0.8);
+  }
+  
